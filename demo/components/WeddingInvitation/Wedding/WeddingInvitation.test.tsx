@@ -89,9 +89,7 @@ describe('WeddingInvitation', () => {
         });
 
         it('lotteryLabel / lotteryHint 透传', () => {
-            render(
-                <WeddingInvitation lotteryLabel="抽奖啦" lotteryHint="保留票根" />
-            );
+            render(<WeddingInvitation lotteryLabel="抽奖啦" lotteryHint="保留票根" />);
             expect(screen.getByText('抽奖啦')).toBeInTheDocument();
             expect(screen.getByText('保留票根')).toBeInTheDocument();
         });
@@ -120,11 +118,7 @@ describe('WeddingInvitation', () => {
 
         it('可与其它 props 一起组合使用', () => {
             render(
-                <WeddingInvitation
-                    brideAndGroomImage="https://example.com/u.png"
-                    brideName="Alice"
-                    groomName="Bob"
-                />
+                <WeddingInvitation brideAndGroomImage="https://example.com/u.png" brideName="Alice" groomName="Bob" />
             );
             const img = screen.getByAltText('bride and groom') as HTMLImageElement;
             expect(img.src).toBe('https://example.com/u.png');
@@ -316,9 +310,7 @@ describe('WeddingInvitationExportButton', () => {
     it('导出中按钮文案变为"生成中…"且禁用', async () => {
         const fakeRef = {
             current: {
-                exportAsImage: vi.fn(
-                    () => new Promise<void>((resolve) => setTimeout(resolve, 50))
-                ),
+                exportAsImage: vi.fn(() => new Promise<void>((resolve) => setTimeout(resolve, 50))),
                 getElement: () => null,
             },
         } as unknown as React.MutableRefObject<WeddingInvitationRef | null>;
